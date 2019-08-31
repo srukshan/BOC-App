@@ -18,21 +18,21 @@ class _Login extends State<Login>{
   Widget usernameField = TextFormField(
     validator: (value) {
       if (value.isEmpty) {
-        return 'Please enter the username';
+        return AppTranslations.of(context).text('login_username_error');
       }
       return null;
     },
     controller: username,
     keyboardType: TextInputType.text,
     decoration: new InputDecoration(
-      hintText:"Username",
+      hintText:AppTranslations.of(context).text("username"),
     ),
   );
 
   Widget passwordField =  TextFormField(
     validator: (value) {
       if (value.length < 8) {
-        return 'The Password must be at least 8 characters.';
+        return AppTranslations.of(context).text('login_password_error');
       }
 
       return null;
@@ -40,7 +40,7 @@ class _Login extends State<Login>{
     controller: password,
     obscureText: true,
     decoration: new InputDecoration(
-        hintText:"Password"
+        hintText:AppTranslations.of(context).text("password")
     ),
   );
 
@@ -50,7 +50,7 @@ class _Login extends State<Login>{
   Widget build(BuildContext context) {
     loginButton = new RaisedButton(
         child: new Text(
-          'Login'
+          AppTranslations.of(context).text('login')
         ),
         onPressed: (){
           if (UserService.LogIn(username.text, password.text)){
@@ -73,7 +73,12 @@ class _Login extends State<Login>{
                   padding: const EdgeInsets.all(30),
                   child: new ListView(
                     children: <Widget>[
-                      Text("Login", style: Theme.of(context).primaryTextTheme.display1.copyWith(color: Colors.black),textAlign: TextAlign.center,),
+                      Text(
+                        AppTranslations.of(context).text("login"), 
+                        style: Theme.of(context).primaryTextTheme.display1
+                          .copyWith(color: Colors.black),
+                        textAlign: TextAlign.center,
+                      ),
                       Padding(padding: EdgeInsets.only(bottom: 10),),
                       usernameField,
                       passwordField,
@@ -82,8 +87,8 @@ class _Login extends State<Login>{
                       Padding(padding: EdgeInsets.only(bottom: 10),),
                       Row(
                         children: <Widget>[
-                          Text("Forgot Password?"),
-                          Text("Unlock User")
+                          Text(AppTranslations.of(context).text("login_forgot_pass")),
+                          Text(AppTranslations.of(context).text("login_unlock_user"))
                         ],
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       ),
@@ -93,7 +98,11 @@ class _Login extends State<Login>{
                         padding:EdgeInsets.all(10),
                         child: Column(
                           children: <Widget>[
-                            Text("Call Us Now", style: Theme.of(context).primaryTextTheme.subhead, textAlign: TextAlign.center,),
+                            Text(
+                              AppTranslations.of(context).text("call_us"), 
+                              style: Theme.of(context).primaryTextTheme.subhead, 
+                              textAlign: TextAlign.center,
+                            ),
                             Padding(padding: EdgeInsets.only(bottom: 10),),
                             Text(
                               "076 6154 361",
@@ -117,7 +126,7 @@ class _Login extends State<Login>{
           children: <Widget>[
             Container(
                 child: Text(
-                    "Privacy & Security | Terms of use © 2019 Bank Of Ceylon. All Rights Reserved",
+                    AppTranslations.of(context).text("Privacy & Security | Terms of use © 2019 Bank Of Ceylon. All Rights Reserved",
                     style: Theme.of(context).textTheme.caption.copyWith(color: Colors.black),
                     textAlign: TextAlign.center,
                 ),
@@ -153,25 +162,25 @@ class _Login extends State<Login>{
           Card(
             child: Padding(
               padding: const EdgeInsets.all(10),
-              child: Text("Find Us", style: Theme.of(context).textTheme.button, textAlign: TextAlign.center,),
+              child: Text(AppTranslations.of(context).text("find_us"), style: Theme.of(context).textTheme.button, textAlign: TextAlign.center,),
             ),
           ),
           Card(
             child: Padding(
               padding: const EdgeInsets.all(10),
-              child: Text("FAQ", style: Theme.of(context).textTheme.button, textAlign: TextAlign.center,),
+              child: Text(AppTranslations.of(context).text("faq"), style: Theme.of(context).textTheme.button, textAlign: TextAlign.center,),
             ),
           ),
           Card(
             child: Padding(
               padding: const EdgeInsets.all(10),
-              child: Text("Offers", style: Theme.of(context).textTheme.button, textAlign: TextAlign.center,),
+              child: Text(AppTranslations.of(context).text("offers"), style: Theme.of(context).textTheme.button, textAlign: TextAlign.center,),
             ),
           ),
           Card(
             child: Padding(
               padding: const EdgeInsets.all(10),
-              child: Text("Calculator", style: Theme.of(context).textTheme.button, textAlign: TextAlign.center,),
+              child: Text(AppTranslations.of(context).text("calculator"), style: Theme.of(context).textTheme.button, textAlign: TextAlign.center,),
             ),
           ),
         ],

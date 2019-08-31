@@ -4,5 +4,18 @@
     "Agreement_title_1": "By agreeing to this CEA (by “click through” agreement or otherwise) you agree to the terms and conditions of this CEA and any documents incorporated by reference.",
     "Agreement_2": "Braintree Customer further agrees that this CEA forms a legally binding contract between Braintree Customer and Wells Fargo. Any rights not expressly granted herein are reserved by Wells Fargo.",
     "btn_agree": "Agree",
-    "btn_disagree": "Disagree"
+    "btn_disagree": "Disagree",
+    "login_username_error":"Please enter the username",
+    "username": "Username",
+    "login_password_error": "The Password must be at least 8 characters.",
+    "password":"Password",
+    "login": "Login",
+    "login_forgot_pass": "Forgot Password?",
+    "login_unlock_user": "Unlock User",
+    "call_us": "Call Us Now",
+    "footer_content": "Privacy & Security | Terms of use © 2019 Bank Of Ceylon. All Rights Reserved",
+    "find_us": "Find Us",
+    "faq": "FAQ",
+    "offers": "Offers",
+    "calculator": "Calculator"
 }
