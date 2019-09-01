@@ -1,5 +1,7 @@
+import 'package:boc_app/controller/Localization/AppTranslations.dart';
 import 'package:boc_app/service/UserService.dart';
 import 'package:boc_app/view/CustomContainer.dart';
+import 'package:boc_app/view/FAQ.dart';
 import 'package:boc_app/view/MainMenu.dart';
 import 'package:flutter/material.dart';
 
@@ -15,45 +17,45 @@ class _Login extends State<Login>{
   static TextEditingController username = new TextEditingController(text: '');
   static TextEditingController password = new TextEditingController(text: "");
 
-  Widget usernameField = TextFormField(
-    validator: (value) {
-      if (value.isEmpty) {
-        return AppTranslations.of(context).text('login_username_error');
-      }
-      return null;
-    },
-    controller: username,
-    keyboardType: TextInputType.text,
-    decoration: new InputDecoration(
-      hintText:AppTranslations.of(context).text("username"),
-    ),
-  );
-
-  Widget passwordField =  TextFormField(
-    validator: (value) {
-      if (value.length < 8) {
-        return AppTranslations.of(context).text('login_password_error');
-      }
-
-      return null;
-    },
-    controller: password,
-    obscureText: true,
-    decoration: new InputDecoration(
-        hintText:AppTranslations.of(context).text("password")
-    ),
-  );
-
-  Widget loginButton;
+  static Widget usernameField, passwordField, loginButton;
 
   @override
   Widget build(BuildContext context) {
+    usernameField = TextFormField(
+      validator: (value) {
+        if (value.isEmpty) {
+          return AppTranslations.of(context).text('login_username_error');
+        }
+        return null;
+      },
+      controller: username,
+      keyboardType: TextInputType.text,
+      decoration: new InputDecoration(
+        hintText:AppTranslations.of(context).text("username"),
+      ),
+    );
+
+    passwordField =  TextFormField(
+      validator: (value) {
+        if (value.length < 8) {
+          return AppTranslations.of(context).text('login_password_error');
+        }
+
+        return null;
+      },
+      controller: password,
+      obscureText: true,
+      decoration: new InputDecoration(
+          hintText:AppTranslations.of(context).text("password")
+      ),
+    );
+
     loginButton = new RaisedButton(
         child: new Text(
           AppTranslations.of(context).text('login')
         ),
         onPressed: (){
-          if (UserService.LogIn(username.text, password.text)){
+          if (UserService.logIn(username.text, password.text)){
             Navigator.push(
                 context, MaterialPageRoute(
                 builder: (context) => MainMenu()
@@ -87,8 +89,14 @@ class _Login extends State<Login>{
                       Padding(padding: EdgeInsets.only(bottom: 10),),
                       Row(
                         children: <Widget>[
-                          Text(AppTranslations.of(context).text("login_forgot_pass")),
-                          Text(AppTranslations.of(context).text("login_unlock_user"))
+                          Text(
+                              AppTranslations.of(context).text("login_forgot_pass"),
+                            style: Theme.of(context).textTheme.caption,
+                          ),
+                          Text(
+                              AppTranslations.of(context).text("login_unlock_user"),
+                            style: Theme.of(context).textTheme.caption,
+                          )
                         ],
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       ),
@@ -126,7 +134,7 @@ class _Login extends State<Login>{
           children: <Widget>[
             Container(
                 child: Text(
-                    AppTranslations.of(context).text("Privacy & Security | Terms of use © 2019 Bank Of Ceylon. All Rights Reserved",
+                    AppTranslations.of(context).text("footer_content"),
                     style: Theme.of(context).textTheme.caption.copyWith(color: Colors.black),
                     textAlign: TextAlign.center,
                 ),
@@ -165,11 +173,20 @@ class _Login extends State<Login>{
               child: Text(AppTranslations.of(context).text("find_us"), style: Theme.of(context).textTheme.button, textAlign: TextAlign.center,),
             ),
           ),
-          Card(
-            child: Padding(
-              padding: const EdgeInsets.all(10),
-              child: Text(AppTranslations.of(context).text("faq"), style: Theme.of(context).textTheme.button, textAlign: TextAlign.center,),
+          InkWell(
+            child: Card(
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: Text(AppTranslations.of(context).text("faq"), style: Theme.of(context).textTheme.button, textAlign: TextAlign.center,),
+              ),
             ),
+            onTap: (){
+              Navigator.push(
+                context, MaterialPageRoute(
+                  builder: (context) => FAQ()
+                )
+              );
+            },
           ),
           Card(
             child: Padding(
