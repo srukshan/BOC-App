@@ -2,7 +2,7 @@ import 'package:boc_app/controller/Localization/AppTranslations.dart';
 import 'package:boc_app/service/UserService.dart';
 import 'package:boc_app/view/CustomContainer.dart';
 import 'package:boc_app/view/FAQ.dart';
-import 'package:boc_app/view/MainMenu.dart';
+import 'package:boc_app/view/Home.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget{
@@ -58,7 +58,7 @@ class _Login extends State<Login>{
           if (UserService.logIn(username.text, password.text)){
             Navigator.push(
                 context, MaterialPageRoute(
-                builder: (context) => MainMenu()
+                builder: (context) => Home()
             )
             );
           }else{

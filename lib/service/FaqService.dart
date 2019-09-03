@@ -1,5 +1,7 @@
 import 'dart:core';
 
+import 'package:boc_app/model/FAQObj.dart';
+
 class FAQService{
 
   static final faqs =<FAQObj>[
@@ -61,9 +63,10 @@ class FAQService{
   ];
   
   static List<FAQObj> searchFAQ(String query){
+    print(query);
     List<FAQObj> list;
     for(FAQObj faq in faqs){
-      if(faq.title.contains(query)){
+      if(faq.title.toLowerCase().contains(query.toLowerCase())){
         list.add(faq);
       }
     }
@@ -98,12 +101,4 @@ class FAQService{
   }
 
 
-}
-
-class FAQObj{
-  String title;
-  String content;
-  String category;
-  
-  FAQObj(this.title, this.content, this.category);
 }

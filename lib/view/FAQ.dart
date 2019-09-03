@@ -1,4 +1,5 @@
 import 'package:boc_app/controller/Localization/AppTranslations.dart';
+import 'package:boc_app/model/FAQObj.dart';
 import 'package:boc_app/service/FaqService.dart';
 import 'package:boc_app/view/CustomContainer.dart';
 import 'package:flutter/material.dart';
@@ -26,33 +27,56 @@ class _FAQ extends State<FAQ>{
     return Scaffold(
       appBar: AppBar(title: Padding(padding: EdgeInsets.all(10),child: Align(child:Image.asset("assets/image/logo-cropped.png")))),
       body: Column(
+        mainAxisSize: MainAxisSize.min,
         children: <Widget>[
+          Padding(padding: EdgeInsets.all(5)),
           Text(
             AppTranslations.of(context).text("faq_quote"),
-            style: Theme.of(context).primaryTextTheme.display1
+            style: Theme.of(context).primaryTextTheme.title
                 .copyWith(color: Colors.black),
           ),
+          Padding(padding: EdgeInsets.all(5)),
           Flexible(
             child: TextField(
-              onChanged: (query){
+              onChanged: (val){
                 setState(() {
-                  faqList = FAQService.searchFAQ(query);
+                  faqList = FAQService.searchFAQ(editingController.text);
+                  selected = -1;
                 });
               },
               controller: editingController,
               decoration: InputDecoration(
                 hintText: AppTranslations.of(context).text("search"),
-                suffixIcon: Icon(Icons.search)
+                suffixIcon: Icon(Icons.search),
               ),
+
             ),
           ),
-          ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: categories.length,
-            itemBuilder: (context, index){
-              if(selected==index){
-                return FlatButton(
-                  onPressed: (){},
+          Padding(padding: EdgeInsets.all(5)),
+          Expanded(
+            flex: 1,
+            child: ListView.builder(
+              shrinkWrap: true,
+              scrollDirection: Axis.horizontal,
+              itemCount: categories.length,
+              itemBuilder: (context, index){
+                if(selected==index){
+                  return FlatButton(
+                    onPressed: (){},
+                    child: Text(categories[index]),
+                    color: Theme.of(context).primaryColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10))
+                    ),
+                  );
+                }
+                return OutlineButton(
+                  onPressed: (){
+                    setState(() {
+                      selected = index;
+                      faqList = FAQService.getCategory(categories[selected]);
+                    });
+                  },
                   child: Text(categories[index]),
                   color: Theme.of(context).primaryColor,
                   shape: RoundedRectangleBorder(
@@ -60,22 +84,12 @@ class _FAQ extends State<FAQ>{
                   ),
                 );
               }
-              return OutlineButton(
-                onPressed: (){
-                  setState(() {
-                    selected = index;
-                    faqList = FAQService.getCategory(categories[selected]);
-                  });
-                },
-                child: Text(categories[index]),
-                color: Theme.of(context).primaryColor,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10))
-                ),
-              );
-            }
+            ),
           ),
-          faqList==null?Container():new FAQList(faqList: faqList)
+          Padding(padding: EdgeInsets.all(5)),
+          Expanded(
+            flex: 10,
+              child: faqList==null?Container():new FAQList(faqList: faqList))
         ]
       )
     );
@@ -92,16 +106,16 @@ class FAQList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("done");
     return ListView.builder(
+      shrinkWrap: true,
       itemCount: faqList.length,
       itemBuilder: (context, index){
-        return ExpansionTile(
+        return new ExpansionTile(
+          backgroundColor: Theme.of(context).primaryColor,
           title: Text(faqList[index].title),
           children: <Widget>[
             Text(faqList[index].content)
           ],
-          initiallyExpanded: index==0,
         );
       },
     );
