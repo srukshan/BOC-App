@@ -1,8 +1,8 @@
-import 'package:boc_app/view/Login.dart';
+import 'package:boc_app/view/login.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-import 'CustomContainer.dart';
+import 'customContainer.dart';
 
 class AppLoader extends StatefulWidget {
   @override

@@ -1,13 +1,13 @@
-import 'package:boc_app/controller/Localization/AppTranslationsDelegate.dart';
-import 'package:boc_app/controller/Localization/Application.dart';
-import 'package:boc_app/view/AppLoader.dart';
-import 'package:boc_app/view/FirstTimeConfigurer.dart';
+import 'package:boc_app/controller/Localization/appTranslationsDelegate.dart';
+import 'package:boc_app/controller/Localization/application.dart';
+import 'package:boc_app/view/appLoader.dart';
+import 'package:boc_app/view/firstTimeConfigurer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wakelock/wakelock.dart';
 
-import 'controller/ThemeController.dart';
+import 'controller/themeController.dart';
 
 main(){
   Wakelock.enable();

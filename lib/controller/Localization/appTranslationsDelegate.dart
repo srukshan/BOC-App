@@ -1,5 +1,5 @@
-import 'package:boc_app/controller/Localization/AppTranslations.dart';
-import 'package:boc_app/controller/Localization/Application.dart';
+import 'package:boc_app/controller/Localization/appTranslations.dart';
+import 'package:boc_app/controller/Localization/application.dart';
 import 'package:flutter/material.dart';
 
 class AppTranslationsDelegate extends LocalizationsDelegate<AppTranslations> {

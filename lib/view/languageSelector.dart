@@ -1,6 +1,6 @@
-import 'package:boc_app/controller/Localization/AppTranslations.dart';
-import 'package:boc_app/view/Agreement.dart';
-import 'package:boc_app/view/CustomContainer.dart';
+import 'package:boc_app/controller/Localization/appTranslations.dart';
+import 'package:boc_app/view/agreement.dart';
+import 'package:boc_app/view/customContainer.dart';
 import 'package:flutter/material.dart';
 
 class LanguageSelector extends StatelessWidget {

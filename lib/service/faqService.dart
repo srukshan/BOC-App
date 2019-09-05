@@ -1,6 +1,6 @@
 import 'dart:core';
 
-import 'package:boc_app/model/FAQObj.dart';
+import 'package:boc_app/model/faqObj.dart';
 
 class FAQService{
 

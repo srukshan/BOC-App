@@ -1,6 +1,6 @@
-import 'package:boc_app/view/LanguageSelector.dart';
+import 'package:boc_app/view/languageSelector.dart';
 import 'package:flutter/material.dart';
-import 'AppLoader.dart';
+import 'appLoader.dart';
 
 class FirstTimeConfigurer extends StatefulWidget{
   _ConfigurerView createState() => _ConfigurerView();

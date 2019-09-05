@@ -1,4 +1,4 @@
-import 'package:boc_app/model/Transaction.dart';
+import 'package:boc_app/model/transaction.dart';
 
 class TransactionService{
   static final transactionList = <Transaction>[
