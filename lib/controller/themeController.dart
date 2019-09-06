@@ -5,7 +5,7 @@ class ThemeController{
       primaryColor: Color(0xFFEE9944),
       primaryColorDark: Color(0xFFEE8833),
       primaryColorLight: Color(0xFFFFAA33),
-      accentColor: Colors.white,
+      accentColor: Color(0xFF3F3F3F),
       primaryColorBrightness: Brightness.dark,
       accentColorBrightness: Brightness.light,
       textTheme: TextTheme(
