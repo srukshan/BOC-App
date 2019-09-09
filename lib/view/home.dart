@@ -6,6 +6,11 @@ import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
   build(context) => Scaffold(
+        drawer: Column(
+          children: <Widget>[
+
+          ],
+        ),
         appBar: AppBar(
             title: Padding(
                 padding: EdgeInsets.all(10),

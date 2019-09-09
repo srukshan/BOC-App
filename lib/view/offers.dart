@@ -27,34 +27,7 @@ class Offers extends StatelessWidget {
               Expanded(
                 child: RaisedButton(
                     color: Theme.of(context).primaryColor,
-                    onPressed: () {
-                      Geolocator()
-                          .checkGeolocationPermissionStatus()
-                          .then((status) {
-                        if (status == GeolocationStatus.granted)
-                          Geolocator().isLocationServiceEnabled().then((val) {
-                            if (val)
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => OfferSelection()));
-                            else
-                              Scaffold.of(context).showSnackBar(SnackBar(
-                                content:
-                                    Text('Please Check your location settings'),
-                              ));
-                          }).catchError((err) {
-                            Scaffold.of(context).showSnackBar(SnackBar(
-                              content: Text('Ops! Something went wrong'),
-                            ));
-                            print(err);
-                          }).timeout(Duration(minutes: 1), onTimeout: () {
-                            Scaffold.of(context).showSnackBar(SnackBar(
-                              content: Text('Ops! Something went wrong'),
-                            ));
-                          });
-                      });
-                    },
+                    onPressed: () => tapNearBy(context),
                     child: Text(
                       "Near Me",
                       style: Theme.of(context).textTheme.body1,
@@ -86,6 +59,35 @@ class Offers extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<void> tapNearBy(context) async {
+    Geolocator()
+        .checkGeolocationPermissionStatus()
+        .then((status) {
+      if (status == GeolocationStatus.granted)
+        Geolocator().isLocationServiceEnabled().then((val) {
+          if (val)
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => OfferSelection()));
+          else
+            Scaffold.of(context).showSnackBar(SnackBar(
+              content:
+              Text('Please Check your location settings'),
+            ));
+        }).catchError((err) {
+          Scaffold.of(context).showSnackBar(SnackBar(
+            content: Text('Ops! Something went wrong'),
+          ));
+          print(err);
+        }).timeout(Duration(minutes: 1), onTimeout: () {
+          Scaffold.of(context).showSnackBar(SnackBar(
+            content: Text('Ops! Something went wrong'),
+          ));
+        });
+    });
   }
 }
 
