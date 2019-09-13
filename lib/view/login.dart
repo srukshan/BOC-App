@@ -19,7 +19,7 @@ class _Login extends State<Login> {
   static TextEditingController username = new TextEditingController(text: '');
   static TextEditingController password = new TextEditingController(text: "");
 
-  static Widget usernameField, passwordField, loginButton;
+  static Widget usernameField, passwordField;
 
   @override
   Widget build(BuildContext context) {
@@ -38,95 +38,82 @@ class _Login extends State<Login> {
           hintText: AppTranslations.of(context).text("password")),
     );
 
-    loginButton = new RaisedButton(
-      child: new Text(AppTranslations.of(context).text('login')),
-      onPressed: () {
-        if (UserService.logIn(username.text, password.text)) {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => Home()));
-        } else {
-          Scaffold.of(context).showSnackBar(SnackBar(
-            content: Text(AppTranslations.of(context).text("login_error")),
-          ));
-        }
-      },
-      padding: EdgeInsets.all(10),
-      color: Theme.of(context).buttonColor,
-    );
     return Scaffold(
       appBar: AppBar(
           title: Padding(
               padding: EdgeInsets.all(10),
               child:
                   Align(child: Image.asset("assets/image/logo-cropped.png")))),
-      body: CustomContainer(
-        child: Padding(
-          padding: const EdgeInsets.all(30),
-          child: new ListView(children: <Widget>[
-            Text(
-              AppTranslations.of(context).text("login"),
-              style: Theme.of(context)
-                  .primaryTextTheme
-                  .display1
-                  .copyWith(color: Colors.black),
-              textAlign: TextAlign.center,
-            ),
-            Padding(
-              padding: EdgeInsets.only(bottom: 10),
-            ),
-            usernameField,
-            passwordField,
-            Padding(
-              padding: EdgeInsets.only(bottom: 20),
-            ),
-            loginButton,
-            Padding(
-              padding: EdgeInsets.only(bottom: 10),
-            ),
-            Row(
-              children: <Widget>[
-                Text(
-                  AppTranslations.of(context).text("login_forgot_pass"),
-                  style: Theme.of(context).textTheme.caption,
-                ),
-                Text(
-                  AppTranslations.of(context).text("login_unlock_user"),
-                  style: Theme.of(context).textTheme.caption,
-                )
-              ],
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            ),
-            Padding(
-              padding: EdgeInsets.only(bottom: 20),
-            ),
-            InkWell(
-              onTap: (){
-                launch('tel:076 6154 361');
-              },
-              child: Container(
-                color: Theme.of(context).primaryColorDark,
-                padding: EdgeInsets.all(10),
-                child: Column(
-                  children: <Widget>[
-                    Text(
-                      AppTranslations.of(context).text("call_us"),
-                      style: Theme.of(context).primaryTextTheme.subhead,
-                      textAlign: TextAlign.center,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(bottom: 10),
-                    ),
-                    Text(
-                      "076 6154 361",
-                      style: Theme.of(context).primaryTextTheme.subtitle,
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                ),
+      body: Builder(
+        builder: (context) => CustomContainer(
+          child: Padding(
+            padding: const EdgeInsets.all(30),
+            child: new ListView(children: <Widget>[
+              Text(
+                AppTranslations.of(context).text("login"),
+                style: Theme.of(context)
+                    .primaryTextTheme
+                    .display1
+                    .copyWith(color: Colors.black),
+                textAlign: TextAlign.center,
               ),
-            )
-          ]),
+              Padding(
+                padding: EdgeInsets.only(bottom: 10),
+              ),
+              usernameField,
+              passwordField,
+              Padding(
+                padding: EdgeInsets.only(bottom: 20),
+              ),
+              getLoginButton(context),
+              Padding(
+                padding: EdgeInsets.only(bottom: 10),
+              ),
+              Row(
+                children: <Widget>[
+                  Text(
+                    AppTranslations.of(context).text("login_forgot_pass"),
+                    style: Theme.of(context).textTheme.caption,
+                  ),
+                  Text(
+                    AppTranslations.of(context).text("login_unlock_user"),
+                    style: Theme.of(context).textTheme.caption,
+                  )
+                ],
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              ),
+              Padding(
+                padding: EdgeInsets.only(bottom: 20),
+              ),
+              InkWell(
+                onTap: (){
+                  launch('tel:076 6154 361');
+                },
+                child: Container(
+                  color: Theme.of(context).primaryColorDark,
+                  padding: EdgeInsets.all(10),
+                  child: Column(
+                    children: <Widget>[
+                      Text(
+                        AppTranslations.of(context).text("call_us"),
+                        style: Theme.of(context).primaryTextTheme.subhead,
+                        textAlign: TextAlign.center,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 10),
+                      ),
+                      Text(
+                        "076 6154 361",
+                        style: Theme.of(context).primaryTextTheme.subtitle,
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                  ),
+                ),
+              )
+            ]),
+          ),
         ),
       ),
       bottomNavigationBar: GestureDetector(
@@ -232,5 +219,23 @@ class _Login extends State<Login> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
           );
         });
+  }
+
+  Widget getLoginButton(BuildContext context) {
+    return new RaisedButton(
+      child: new Text(AppTranslations.of(context).text('login')),
+      onPressed: () {
+        if (UserService.logIn(username.text, password.text)) {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => Home()));
+        } else {
+          Scaffold.of(context).showSnackBar(SnackBar(
+            content: Text(AppTranslations.of(context).text("login_error")),
+          ));
+        }
+      },
+      padding: EdgeInsets.all(10),
+      color: Theme.of(context).buttonColor,
+    );
   }
 }

@@ -13,7 +13,7 @@ class FindUs extends StatefulWidget {
 class _FindUs extends State<FindUs> {
   GoogleMapController mapController;
 
-  double _zoom = 11;
+  double _zoom = 2;
 
   LatLng _position = const LatLng(45.521563, -122.677433);
 
@@ -70,6 +70,7 @@ class _FindUs extends State<FindUs> {
       tooltip: "Locate Me",
       onPressed: ()=>tryToLocate(context),
       child: Icon(Icons.adjust),
+      backgroundColor: Colors.white,
     ),
       );
   }
