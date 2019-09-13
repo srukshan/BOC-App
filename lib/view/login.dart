@@ -1,5 +1,6 @@
 import 'package:boc_app/controller/Localization/appTranslations.dart';
 import 'package:boc_app/service/userService.dart';
+import 'package:boc_app/view/appDefaults.dart';
 import 'package:boc_app/view/customContainer.dart';
 import 'package:boc_app/view/faq.dart';
 import 'package:boc_app/view/findUs.dart';
@@ -226,8 +227,7 @@ class _Login extends State<Login> {
       child: new Text(AppTranslations.of(context).text('login')),
       onPressed: () {
         if (UserService.logIn(username.text, password.text)) {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => Home()));
+          replaceView(context, Home());
         } else {
           Scaffold.of(context).showSnackBar(SnackBar(
             content: Text(AppTranslations.of(context).text("login_error")),
